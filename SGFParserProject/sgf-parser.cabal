@@ -1,0 +1,48 @@
+cabal-version:       2.4
+name:                SGFParserProject
+version:             0.1.0.0
+license:             BSD-3-Clause
+author:              Your Name
+maintainer:          you@example.com
+synopsis:            A parser for SGF Go files, outputs JSON for openFrameworks
+category:            Parser
+build-type:          Simple
+
+executable SGFParserProject
+  main-is:             Main.hs
+  hs-source-dirs:      app, src
+  other-modules:       Converters.SGFToJSON
+                     , IOManager
+                     , Parsers.SGFParser
+                     , UI
+                     , Game.Types
+                     , Game.Engine
+                     , Game.BFS
+  build-depends:       base >=4.14 && <5,
+                       megaparsec,
+                       text,
+                       bytestring,
+                       aeson,
+                       containers,
+                       directory,
+                       vector
+  default-language:    Haskell2010
+
+test-suite SGFParserTest
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test, src
+  main-is:             Spec.hs
+  other-modules:       Parsers.SGFParser
+                     , Converters.SGFToJSON
+                     , Game.Types
+                     , Game.Engine
+                     , Game.BFS
+  build-depends:       base >=4.14 && <5,
+                       HUnit,
+                       megaparsec,
+                       text,
+                       bytestring,
+                       aeson,
+                       containers,
+                       vector
+  default-language:    Haskell2010
